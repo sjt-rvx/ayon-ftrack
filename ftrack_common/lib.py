@@ -240,3 +240,19 @@ def get_service_ftrack_icon_url(
         addon_version=addon_version or get_service_addon_version(),
         addon_name=addon_name or get_service_addon_name()
     )
+
+
+def convert_folder_path_to_ftrack_parent_query(path):
+    """
+    Takes a folder path and converts it into a querypart in the form
+        name is "name" and parent.name is X and parent.parent.name is Y ...
+    """
+    parts = path.split('/')
+    parts.reverse()
+
+    folder_name = parts.pop(0)
+    query = f'name is "{folder_name}"'
+    for idx, part in enumerate(parts):
+        parent_query = 'parent.' * (idx + 1) + f'name is "{part}"'
+        query += f' and {parent_query}'
+    return query

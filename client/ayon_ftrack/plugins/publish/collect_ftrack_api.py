@@ -1,5 +1,6 @@
 import logging
 import pyblish.api
+from ayon_ftrack.common.lib import convert_folder_path_to_ftrack_parent_query
 
 
 class CollectFtrackApi(pyblish.api.ContextPlugin):
@@ -27,6 +28,8 @@ class CollectFtrackApi(pyblish.api.ContextPlugin):
         project_name = context.data["projectName"]
         asset_name = context.data["asset"]
         task_name = context.data["task"]
+        folder_path = context.data["folder_path"]
+        folder_type = context.data["folder_type"]
 
         # Find project entity
         project_query = 'Project where full_name is "{0}"'.format(project_name)
@@ -51,8 +54,8 @@ class CollectFtrackApi(pyblish.api.ContextPlugin):
             # Find asset entity
             entity_query = (
                 'TypedContext where project_id is "{0}"'
-                ' and name is "{1}"'
-            ).format(project_entity["id"], asset_name)
+                ' and {1}'
+            ).format(project_entity["id"], convert_folder_path_to_ftrack_parent_query(folder_path))
             self.log.debug("Asset entity query: < {0} >".format(entity_query))
             asset_entities = []
             for entity in session.query(entity_query).all():
