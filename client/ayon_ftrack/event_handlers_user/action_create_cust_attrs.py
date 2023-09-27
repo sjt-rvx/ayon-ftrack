@@ -277,7 +277,7 @@ class CustomAttributes(LocalAction):
                 "key": CUST_ATTR_KEY_SYNC_FAIL,
                 "label": "AYON sync failed",
                 "type": "boolean",
-                "default": "",
+                "default": False,
                 "group": CUST_ATTR_GROUP,
                 "is_hierarchical": True,
                 "config": {"markdown": False}
