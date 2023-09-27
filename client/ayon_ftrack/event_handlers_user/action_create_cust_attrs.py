@@ -189,7 +189,7 @@ class CustomAttributes(LocalAction):
             self.create_ayon_attributes(event)
             self.applications_attribute(event)
             self.tools_attribute(event)
-            self.intent_attribute(event)
+            # self.intent_attribute(event)
             self.custom_attributes_from_file(event)
 
             job["status"] = "done"
@@ -287,6 +287,7 @@ class CustomAttributes(LocalAction):
                 "label": "AYON auto-sync",
                 "group": CUST_ATTR_GROUP,
                 "type": "boolean",
+                "default": False,
                 "entity_type": "show"
             }
         ]:

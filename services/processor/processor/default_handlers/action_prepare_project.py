@@ -156,6 +156,12 @@ class PrepareProjectServer(ServerAction):
                 "name": "auto_sync_project",
                 "value": ayon_autosync_value
             })
+        else:
+            items.append({
+                "type": "hidden",
+                "name": "auto_sync_project",
+                "value": False
+            })
 
         return {
             "title": "Choose AYON Anatomy Preset",
@@ -402,7 +408,7 @@ class PrepareProjectServer(ServerAction):
 
         if not auto_sync_project:
             event_data = {
-                "actionIdentifier": "sync.to.avalon.server",
+                "actionIdentifier": "sync.from.ftrack.to.ayon",
                 "selection": [{
                     "entityId": project_entity["id"],
                     "entityType": "show"
