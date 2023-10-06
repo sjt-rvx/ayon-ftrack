@@ -43,7 +43,7 @@ def get_ayon_attr_configs(session, query_keys=None, split_hierarchical=True):
         " where group.name in ({})"
     ).format(
         ", ".join(query_keys),
-        join_filter_values({"openpype", CUST_ATTR_GROUP})
+        join_filter_values({"openpype", CUST_ATTR_GROUP, "PRODUCTION", "FRAMES"})
     )
     all_attrs = session.query(cust_attrs_query).all()
     for cust_attr in all_attrs:

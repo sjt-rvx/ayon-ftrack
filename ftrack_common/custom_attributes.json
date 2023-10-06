@@ -6,11 +6,6 @@
         }
     },
     "is_hierarchical": {
-        "fps": {
-            "label": "FPS",
-            "type": "number",
-            "config": {"isdecimal": true}
-        },
         "clipIn": {
             "label": "Clip in",
             "type": "number"

@@ -54,7 +54,8 @@ class IntegrateFtrackInstance(pyblish.api.InstancePlugin):
         {"name": "workfile", "asset_type": "scene"},
         {"name": "animation", "asset_type": "cache"},
         {"name": "image", "asset_type": "img"},
-        {"name": "reference", "asset_type": "reference"}
+        {"name": "reference", "asset_type": "reference"},
+        {"name": "lut", "asset_type": "lut"}
     ]
     keep_first_product_name_for_review = True
     upload_reviewable_with_origin_name = False
