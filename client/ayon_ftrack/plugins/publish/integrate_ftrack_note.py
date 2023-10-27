@@ -54,7 +54,7 @@ class IntegrateFtrackNote(pyblish.api.InstancePlugin):
 
         session = context.data["ftrackSession"]
 
-        intent = instance.context.data.get("intent")
+        intent = instance.data.get("intent") or instance.context.data.get("intent")
         intent_label = None
         if intent:
             value = intent["value"]
@@ -63,10 +63,12 @@ class IntegrateFtrackNote(pyblish.api.InstancePlugin):
 
         # if intent label is set then format comment
         # - it is possible that intent_label is equal to "" (empty string)
+        self.note_labels = []
         if intent_label:
             self.log.debug(
-                "Intent label is set to `{}`.".format(intent_label)
+                "Intent label is set to `{}`. Appending to note labels".format(intent_label)
             )
+            self.note_labels.append(intent_label)
 
         else:
             self.log.debug("Intent is not set.")
